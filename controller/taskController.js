@@ -1,23 +1,20 @@
 const Task = require('../models/Task')
+const asyncWrapper = require('../middleware/async')
 // @desc Get all transactions
 // @route GET /api/v1/tasks
 // @access Public
-const getAllTasks = async (req,res) => {
+const getAllTasks = asyncWrapper( async (req,res) => {
 
-    try {
-        
+            
         const task = await Task.find({});
 
         res.status(201).json( {task} )
 
-    } catch (error) {
-
-        res.status(500).json({msg:error})
-        
+ 
     }
 
     
-}
+)
 
 // @desc Create transaction
 // @route POST /api/v1/tasks
